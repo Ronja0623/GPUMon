@@ -1,0 +1,13 @@
+[Unit]
+Description=Run the GPUMon daily CSV export
+
+[Timer]
+# Once a day at 04:30 in the dashboard time zone (not the host's system time
+# zone); install-central.sh replaces Asia/Taipei with "timezone" from
+# central.yaml. A run missed while the host was off is made up at the next boot.
+OnCalendar=*-*-* 04:30:00 Asia/Taipei
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

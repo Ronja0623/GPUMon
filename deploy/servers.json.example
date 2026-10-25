@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "srv-40": {"display_name": "srv-40 (RTX 3080)", "notes": "Also hosts gpumon-central.", "sort_order": 1},
+    "srv-41": {"display_name": "srv-41 (2x RTX 2080 Ti)", "sort_order": 2},
+    "srv-42": {"display_name": "srv-42 (RTX 3080 Ti)", "sort_order": 3},
+    "srv-43": {"display_name": "srv-43 (RTX 5070 Ti)", "sort_order": 4},
+    "old-box": {"retired": true}
+  }
+}

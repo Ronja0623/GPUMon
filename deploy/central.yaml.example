@@ -1,0 +1,66 @@
+# gpumon-central configuration (/etc/gpumon/central.yaml).
+# Every key is optional; the value shown is the default unless noted.
+# An invalid value makes central refuse to start with an error that names the key.
+
+# Address and port to bind. Production binds to the internal IP of the
+# central host (for example <PREFIX>.40:8080). Default: 127.0.0.1:8080.
+listen: "127.0.0.1:8080"
+# Directory for audit.db and the monthly snapshots-YYYY-MM.db files.
+data_dir: /var/lib/gpumon
+# Shared bearer token file. Must be mode 0600 or stricter.
+token_file: /etc/gpumon/token
+# Optional display overrides (display_name, notes, sort_order, retired).
+# Reloaded on modification or SIGHUP.
+servers_file: /etc/gpumon/servers.json
+# IANA time zone used on the dashboard, for daily rollups, and in exports (A9).
+timezone: Asia/Taipei
+# Fallback sample interval for servers that have not reported one yet.
+expected_interval_seconds: 30
+# A server is offline, and a data gap is recorded, after this many missed intervals.
+offline_after_intervals: 3
+# Warn when the agent clock differs from central by more than this many seconds.
+clock_skew_warn_seconds: 5
+# The public API and the dashboard only show this many hours of history.
+public_history_hours: 72
+# Raw snapshot retention (A13): keep this many monthly files, current month included.
+raw_retention_months: 3
+# ... and delete the oldest non-current files while the total is above this size (5 GiB).
+raw_max_total_bytes: 5368709120
+# An owner absent from a GPU for longer than this ends the GPU session (A7).
+session_gap_tolerance_minutes: 5
+gpu_state:
+  # A GPU without compute processes is free when its used VRAM is at most this.
+  free_vram_mib: 512
+  # A GPU is idle_occupied when a compute process was present for this long ...
+  idle_window_minutes: 30
+  # ... with a mean utilization below this percentage.
+  idle_util_pct: 5
+  # Processes with these executable names never make a GPU busy or occupied.
+  ignore_processes: [Xorg, Xwayland, gnome-shell]
+# Number of owners shown individually in each disk chart; the rest are "others".
+disk_top_owners: 8
+# Daily CSV export of records older than the public window ("gpumon auto-export",
+# run by gpumon-export.timer when installed with install-central.sh --auto-export yes).
+auto_export:
+  # Output directory; empty means <data_dir>/exports.
+  dir: ""
+  # Kinds exported per day: any of snapshots, sessions, rollups, gaps, disk.
+  kinds: [sessions, rollups, gaps, disk]
+  # Days checked on each run; missing files of these days are written (catch-up after downtime).
+  catch_up_days: 7
+# Seconds between dashboard refreshes.
+refresh_seconds: 15
+# Seconds between heartbeat writes (used to record central_offline gaps).
+heartbeat_seconds: 60
+# Minutes between retention and rollup runs.
+maintenance_interval_minutes: 60
+# Minimum minutes between two identical warning or error log lines.
+log_rate_limit_minutes: 60
+# Largest accepted ingest request in bytes.
+max_body_bytes: 4194304
+# Dashboard files and payload schema. Empty means auto-detect (the install
+# script sets /opt/gpumon/share/web and /opt/gpumon/share/schema/payload.schema.json).
+web_dir: ""
+schema_file: ""
+# One of debug, info, warn, error.
+log_level: info

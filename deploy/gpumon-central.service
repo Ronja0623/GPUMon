@@ -1,0 +1,39 @@
+[Unit]
+Description=GPUMon central (ingest API, storage, dashboard)
+Documentation=file:///opt/gpumon/docs/install.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=gpumon
+Group=gpumon
+ExecStart=/opt/gpumon/venv/bin/gpumon serve --config /etc/gpumon/central.yaml
+# SIGHUP reloads servers.json without a restart.
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/gpumon
+PrivateTmp=yes
+ProtectHome=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+[Unit]
+Description=GPUMon agent (pushes GPU, CPU, memory, and disk usage to gpumon-central)
+Documentation=file:///opt/gpumon/docs/install.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+# Root is needed to read every process's /proc entries, the Docker socket,
+# and every user's files for the daily disk scan. The hardening below limits
+# what that root process can change: it can write nowhere except its state
+# directory, and it opens no listening sockets. Device access is not
+# restricted because NVML needs /dev/nvidia*.
+User=root
+ExecStart=/usr/local/bin/gpumon-agent run --config /etc/gpumon/agent.yaml
+Restart=always
+RestartSec=10
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+# Optional state directory (/var/lib/gpumon-agent); the only writable path.
+StateDirectory=gpumon-agent
+
+[Install]
+WantedBy=multi-user.target

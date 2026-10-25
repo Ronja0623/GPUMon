@@ -1,0 +1,66 @@
+# gpumon-agent configuration (/etc/gpumon/agent.yaml).
+# Every key is optional; the value shown is the default unless noted.
+# An invalid value makes the agent refuse to start with an error that names the key.
+
+# Identifier shown on the dashboard. Empty means the host name.
+server_id: ""
+
+# Ingest endpoint of gpumon-central. Replace <CENTRAL_IP> (for example the IP of srv-40).
+# Default when omitted: http://127.0.0.1:8080/api/v1/ingest
+central_url: "http://<CENTRAL_IP>:8080/api/v1/ingest"
+
+# File holding the shared bearer token. Must be mode 0600 or stricter.
+token_file: /etc/gpumon/token
+
+# Seconds between samples. Each sample is pushed immediately.
+interval_seconds: 30
+
+# Number of top processes per owner, by CPU and by RSS.
+top_processes_per_owner: 5
+
+# Accounts with a UID below this value are reported as "system".
+# When omitted, UID_MIN from /etc/login.defs is used, or 1000 if that is absent.
+# uid_min: 1000
+
+# Hours between unconditional inventory messages (also sent at start and on change).
+inventory_interval_hours: 6
+
+# HTTP request timeout for pushes, in seconds.
+push_timeout_seconds: 5
+
+# Minimum minutes between two identical warning or error log lines.
+error_log_interval_minutes: 60
+
+docker:
+  # Set to false on hosts without rootful Docker to skip the API entirely.
+  enabled: true
+  # Unix socket of the rootful Docker daemon. Only GET requests are made.
+  socket: /var/run/docker.sock
+  # Container label that names the owner of a rootful container.
+  owner_label: owner
+  # Owner of unlabeled rootful containers. Set it on the host where the
+  # rootful Docker user works (assumption A5). Empty means "unattributed".
+  default_owner: ""
+
+multipass:
+  # Regular expressions applied to the QEMU argv; the first capture group is
+  # the instance name. VMs must be named <username>-<anything> (assumption A4).
+  name_patterns: ['/instances/([^/]+)/', '-name\s+(\S+)']
+  # A QEMU process whose argv contains one of these directories is a multipass VM
+  # even when its parent is not multipassd.
+  data_dirs: ["/var/snap/multipass/common/data/multipassd", "/var/lib/multipassd"]
+
+disk:
+  # Mount points reported with statfs in every sample.
+  statfs_mounts: ["/", "/home"]
+  # Paths scanned once a day for per-owner usage (assumption A6).
+  scan_paths: ["/home"]
+  # Local time of the daily scan, "HH:MM".
+  scan_time_local: "03:30"
+  # The scan stops after this many minutes and reports a partial result.
+  scan_timeout_minutes: 120
+  # Also run one scan right after the agent starts.
+  scan_on_start: false
+
+# One of debug, info, warn, error.
+log_level: info
