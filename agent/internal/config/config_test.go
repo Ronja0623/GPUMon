@@ -94,7 +94,7 @@ func TestExampleConfigDocumentsEveryKey(t *testing.T) {
 		t.Errorf("docs/configuration.md missing: %v", err)
 	}
 	// The example parses once the placeholder URL is filled in.
-	filled := strings.Replace(text, "<CENTRAL_IP>", "192.0.2.40", 1)
+	filled := strings.Replace(text, "<CENTRAL_HOST>", "192.0.2.10", 1)
 	if _, err := config.Parse([]byte(filled)); err != nil {
 		t.Fatalf("example config does not parse: %v", err)
 	}

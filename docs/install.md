@@ -3,6 +3,22 @@
 Targets: Ubuntu 22.04 or 24.04 on linux/amd64, Python 3.10 or later on the central host. The servers do not
 need internet access: build the packages on any machine with `make package` and copy `dist/` over.
 
+## Before you start
+
+Decide these once for your group; everything else has working defaults.
+
+| Decision | Where it goes |
+|----------|---------------|
+| Which machine runs central (`<CENTRAL_HOST>` below): one of the GPU servers or a small VM reachable from all of them. It needs Python 3.10+ and little CPU; plan about 1 GiB of disk per server for three months of raw data. | `install-central.sh --listen <CENTRAL_HOST>:8080` |
+| Your internal subnet and VPN address pool, for the firewall. | [firewall.md](firewall.md) |
+| Your time zone, used on the dashboard, for daily rollups, exports, and the export timer (default `Asia/Taipei`). | `timezone` in `/etc/gpumon/central.yaml` |
+| Server names on the dashboard (default: each host name). | `--server-id` of `install-agent.sh`, or `servers.json` |
+| On a host where people run rootful Docker without an `owner` label, whom to credit. | `docker.default_owner` in `/etc/gpumon/agent.yaml` |
+| Which paths the daily per-owner disk scan covers (default `/home`). | `disk.scan_paths` in `/etc/gpumon/agent.yaml` |
+
+Share [user-policy.md](user-policy.md) with your users: VM names, container labels, and sudo usage decide
+whether their usage can be attributed to them.
+
 ## Build the packages
 
 ```
@@ -13,18 +29,18 @@ make package
 
 ## Install central
 
-On the central host (the examples use srv-40, `<PREFIX>.40`):
+On the central host:
 
 ```
 tar xzf gpumon-central-0.1.0.tar.gz && cd gpumon-central-0.1.0
-sudo ./install-central.sh --listen <PREFIX>.40:8080
+sudo ./install-central.sh --listen <CENTRAL_HOST>:8080
 sudo ./install-central.sh --dry-run          # shows every action without changing anything
 ```
 
 The script is idempotent. It creates the system user `gpumon`, the virtualenv `/opt/gpumon/venv`, the data
 directory `/var/lib/gpumon` (mode 0750), `/etc/gpumon/central.yaml` (kept if present), a random token in
 `/etc/gpumon/token` (mode 0600, kept if present), and the systemd unit `gpumon-central.service`, then starts
-the service. Check it with `systemctl status gpumon-central` and open `http://<PREFIX>.40:8080/`.
+the service. Check it with `systemctl status gpumon-central` and open `http://<CENTRAL_HOST>:8080/`.
 
 When run on a terminal, the script asks whether to install the daily CSV export of records older than 72
 hours (see "Automatic daily export" in [operations.md](operations.md)); answer `y` to enable it. Pass
@@ -39,7 +55,7 @@ Copy the token from the central host to the server (for example with `scp`), the
 
 ```
 tar xzf gpumon-agent-0.1.0-linux-amd64.tar.gz && cd gpumon-agent-0.1.0-linux-amd64
-sudo ./install-agent.sh --central-url http://<PREFIX>.40:8080/api/v1/ingest --token-file ./token
+sudo ./install-agent.sh --central-url http://<CENTRAL_HOST>:8080/api/v1/ingest --token-file ./token
 sudo shred -u ./token
 ```
 
@@ -57,8 +73,9 @@ Verify the agent with `sudo gpumon-agent diagnose` (see [manual-verification.md]
 
 ## Add a server
 
-Install the agent on the new server with the central URL and the token. Nothing changes on central: the
-server registers itself with its first sample and appears on the dashboard. Optionally give it a display name
+Install the agent on the new server with the central URL and the token. Nothing changes on central, and
+there is no limit on the number of servers: the server registers itself with its first sample and appears on
+the dashboard. Optionally give it a display name
 in `/etc/gpumon/servers.json` (see `servers.json.example`); central picks the change up without a restart.
 
 ## Remove a server

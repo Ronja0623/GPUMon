@@ -3,7 +3,7 @@
 # files are left alone and an existing agent.yaml keeps its other settings.
 #
 # Usage:
-#   sudo ./install-agent.sh --central-url http://<CENTRAL_IP>:8080/api/v1/ingest \
+#   sudo ./install-agent.sh --central-url http://<CENTRAL_HOST>:8080/api/v1/ingest \
 #        (--token-file FILE | --token VALUE) [--server-id ID] [--binary PATH] \
 #        [--root DIR] [--no-systemd] [--dry-run]
 set -euo pipefail

@@ -43,7 +43,7 @@ installation (`install-central.sh` asks, or pass `--auto-export yes`; `--auto-ex
 
 ```
 sudo ./install-central.sh --auto-export yes
-systemctl list-timers gpumon-export.timer          # next run: daily at about 04:30 in `timezone` (Asia/Taipei)
+systemctl list-timers gpumon-export.timer          # next run: daily at about 04:30 in `timezone`
 sudo systemctl start gpumon-export.service         # run it now
 journalctl -u gpumon-export.service
 ls -l /var/lib/gpumon/exports/
@@ -51,10 +51,10 @@ ls -l /var/lib/gpumon/exports/
 
 Each run writes `<kind>-YYYY-MM-DD.csv` for every kind in `auto_export.kinds` (default `sessions`, `rollups`,
 `gaps`, `disk`) to `auto_export.dir` (default `/var/lib/gpumon/exports`, mode 0750, files 0640, owner
-`gpumon`). The timer runs at 04:30 in the configured `timezone` (default Asia/Taipei, that is 20:30 UTC),
+`gpumon`). The timer runs at 04:30 in the configured `timezone` (default Asia/Taipei),
 whatever the system time zone of the host is; the installer copies the zone from `central.yaml` into the timer,
 so run it again after changing `timezone`. The newest exported day is the day before the one that contains "now minus 72 hours", so on
-2026-10-25 at 04:30 Taipei time the run writes 2026-10-21. Existing files are never overwritten; the last
+2026-10-25 at 04:30 local time the run writes 2026-10-21. Existing files are never overwritten; the last
 `auto_export.catch_up_days` days (default 7) are checked on every run, so days missed while the host was down
 are written later, and the first run after installation exports up to a week of backlog. Session files contain
 every session that overlaps the day, so a session crossing midnight appears in both days. Add `snapshots` to

@@ -5,9 +5,9 @@
 # Identifier shown on the dashboard. Empty means the host name.
 server_id: ""
 
-# Ingest endpoint of gpumon-central. Replace <CENTRAL_IP> (for example the IP of srv-40).
+# Ingest endpoint of gpumon-central. Replace <CENTRAL_HOST> with the address of the central host.
 # Default when omitted: http://127.0.0.1:8080/api/v1/ingest
-central_url: "http://<CENTRAL_IP>:8080/api/v1/ingest"
+central_url: "http://<CENTRAL_HOST>:8080/api/v1/ingest"
 
 # File holding the shared bearer token. Must be mode 0600 or stricter.
 token_file: /etc/gpumon/token

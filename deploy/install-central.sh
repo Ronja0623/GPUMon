@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install or update gpumon-central on the central host (A10). Safe to run
+# Install or update gpumon-central on the central host. Safe to run
 # again: it creates the gpumon user, the virtualenv, the data directory, the
 # configuration, the token, and the systemd unit only when they are missing,
 # and upgrades the package in place. Optionally it installs a daily timer that

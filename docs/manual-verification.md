@@ -20,7 +20,7 @@ requirement with a manual part is listed below with status MANUAL-PENDING until 
 | REQ-SEC-006 | firewall rules | 7 | MANUAL-PENDING |
 | REQ-OPS-003 | install-central.sh on the central host | 14 | MANUAL-PENDING |
 
-Placeholders: `<PREFIX>` is the server address prefix, `<CENTRAL>` is `<PREFIX>.40:8080`, `<you>` is your
+Placeholders: `<CENTRAL>` is `<CENTRAL_HOST>:8080`, the address and port of the central host; `<you>` is your
 login name.
 
 ## Checklist
@@ -129,7 +129,7 @@ read all processes); the agent has no listening socket.
 Open `http://<CENTRAL>/` on a laptop at 1280 px width and on a phone (375 px). Expected: at 1280 px the
 summary, the server cards, and the charts are usable without horizontal page scrolling; at 375 px everything is
 readable in one column and wide tables scroll inside their own box. The page updates itself every 15 s
-("Updated ..." in the header) without reloading. Times carry the zone label "Asia/Taipei (UTC+08:00)".
+("Updated ..." in the header) without reloading. Times carry the label of the configured `timezone`, for example "Asia/Taipei (UTC+08:00)".
 
 ### 10. Sizing after one week
 
@@ -166,8 +166,8 @@ and memory stacked by owner and VRAM stacked by owner for each GPU over the last
 
 ```
 sudo ./install-central.sh --dry-run
-sudo ./install-central.sh --listen <PREFIX>.40:8080
-sudo ./install-central.sh --listen <PREFIX>.40:8080     # second run changes nothing
+sudo ./install-central.sh --listen <CENTRAL>
+sudo ./install-central.sh --listen <CENTRAL>     # second run changes nothing
 id gpumon; ls -ld /var/lib/gpumon /opt/gpumon/venv; ls -l /etc/gpumon/token
 ```
 

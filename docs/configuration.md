@@ -40,11 +40,11 @@ Path: `/etc/gpumon/central.yaml` (`gpumon serve --config PATH`). Check a file wi
 
 | Key | Default | Meaning |
 |-----|---------|---------|
-| `listen` | `127.0.0.1:8080` | Bind address; production uses the internal IP (A10). |
+| `listen` | `127.0.0.1:8080` | Bind address; production uses the central host's internal address (A10). |
 | `data_dir` | `/var/lib/gpumon` | Databases. |
 | `token_file` | `/etc/gpumon/token` | Shared bearer token; refused if wider than 0600. |
 | `servers_file` | `/etc/gpumon/servers.json` | Optional display overrides, reloaded on change or SIGHUP. |
-| `timezone` | `Asia/Taipei` | Dashboard times, rollup days, export local times (A9). |
+| `timezone` | `Asia/Taipei` | Your IANA time zone: dashboard times, rollup days, exports, export timer (A9). |
 | `expected_interval_seconds` | `30` | Interval assumed until a server reports its own. |
 | `offline_after_intervals` | `3` | Offline status and data gaps after this many intervals. |
 | `clock_skew_warn_seconds` | `5` | Skew warning threshold. |
@@ -72,7 +72,7 @@ Path: `/etc/gpumon/central.yaml` (`gpumon serve --config PATH`). Check a file wi
 ## servers.json
 
 ```
-{"servers": {"srv-40": {"display_name": "srv-40 (RTX 3080)", "notes": "central host", "sort_order": 1, "retired": false}}}
+{"servers": {"gpu-01": {"display_name": "gpu-01 (2 GPUs)", "notes": "also runs central", "sort_order": 1, "retired": false}}}
 ```
 
 Allowed keys per server: `display_name`, `notes`, `sort_order`, `retired`. An invalid file is logged and the

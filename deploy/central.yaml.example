@@ -3,7 +3,7 @@
 # An invalid value makes central refuse to start with an error that names the key.
 
 # Address and port to bind. Production binds to the internal IP of the
-# central host (for example <PREFIX>.40:8080). Default: 127.0.0.1:8080.
+# central host (for example <CENTRAL_HOST>:8080). Default: 127.0.0.1:8080.
 listen: "127.0.0.1:8080"
 # Directory for audit.db and the monthly snapshots-YYYY-MM.db files.
 data_dir: /var/lib/gpumon
@@ -12,7 +12,8 @@ token_file: /etc/gpumon/token
 # Optional display overrides (display_name, notes, sort_order, retired).
 # Reloaded on modification or SIGHUP.
 servers_file: /etc/gpumon/servers.json
-# IANA time zone used on the dashboard, for daily rollups, and in exports (A9).
+# Your IANA time zone, used on the dashboard, for daily rollups, in exports, and
+# by the export timer (A9).
 timezone: Asia/Taipei
 # Fallback sample interval for servers that have not reported one yet.
 expected_interval_seconds: 30

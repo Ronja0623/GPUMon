@@ -1,16 +1,16 @@
 # Architecture
 
-GPUMon answers three questions for lab members: where is GPU capacity free, who is using what right now, and
-who used what in the past. It is an internal usage view, not an enforcement or compliance tool.
+GPUMon answers three questions for the users of a group of GPU servers: where is GPU capacity free, who is
+using what right now, and who used what in the past. It is an internal usage view, not an enforcement or compliance tool.
 
 ```
- every GPU server                                 central host (for example srv-40)
+ every GPU server                                 central host (one server or a small VM)
  +---------------------------+  HTTP POST JSON    +------------------------------------+
  | gpumon-agent (Go, root)   | -----------------> | gpumon-central (Python, user gpumon)|
  | no listening sockets      |  Bearer token      |  ingest API, SQLite, dashboard,    |
  +---------------------------+  every 30 s        |  export and maintenance CLI        |
                                                   +------------------------------------+
-                                                        ^ browsers on the internal subnet and VPN
+                                                        ^ browsers on the internal network and VPN
 ```
 
 ## Components
