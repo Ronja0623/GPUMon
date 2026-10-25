@@ -1,0 +1,110 @@
+# Simulated inventory for "gpumon-agent simulate" (E2E test and contract
+# examples). It mirrors Section 1.1 of the specification and places every
+# scenario of REQ-AGT-014 on a server. GPU models and sizes here are test
+# data only; the real agent detects them through NVML.
+#
+# Scenario map:
+#   free GPU ................. srv-40 GPU 0 (only an Xorg graphics process)
+#   busy GPU ................. srv-41 GPU 0, srv-43 GPU 0
+#   idle-occupied GPU ........ srv-42 GPU 0
+#   GPU shared by two users .. srv-41 GPU 1 (alice via sudo, bob)
+#   rootful Docker, label .... srv-41 GPU 0 (carol)
+#   rootful Docker, no label . srv-42 GPU 0 (docker_default_owner dave)
+#   rootless Docker .......... srv-43 GPU 0 (erin, subuid) and CPU job (erin, uid)
+#   multipass VM ............. srv-40 CPU jobs (frank-dev; ci-runner is unattributed)
+#   sudo process ............. srv-41 GPU 1 (alice)
+#   direct root login ........ srv-40 CPU job (root-shared)
+#   unknown UID .............. srv-43 CPU job (uid 4242)
+servers:
+  - id: srv-40
+    os_release: Ubuntu 24.04.1 LTS
+    kernel: 6.8.0-45-generic
+    cpu_model: AMD Ryzen 9 5950X 16-Core Processor
+    logical_cores: 32
+    mem_total_gib: 64
+    driver_version: "570.86.15"
+    cuda_driver_version: 12080
+    uid_offset: 0
+    users: [alice, bob, carol, dave, erin, frank]
+    gpus:
+      - name: NVIDIA GeForce RTX 3080
+        vram_total_mib: 10240
+        state: free
+    jobs:
+      - {kind: multipass, user: frank, vm_name: frank-dev, cores: 2.0, rss_mib: 8192}
+      - {kind: multipass, vm_name: ci-runner, cores: 0.5, rss_mib: 2048}
+      - {kind: root_login, exe: rsync, cores: 0.4, rss_mib: 64}
+      - {kind: uid, user: bob, exe: python3, cores: 1.0, rss_mib: 900, args: ["--api-key=SECRET123"]}
+  - id: srv-41
+    os_release: Ubuntu 22.04.4 LTS
+    kernel: 5.15.0-122-generic
+    cpu_model: Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz
+    logical_cores: 40
+    mem_total_gib: 128
+    driver_version: "550.120"
+    cuda_driver_version: 12040
+    uid_offset: 7
+    users: [alice, bob, carol, dave, erin, frank]
+    gpus:
+      - name: NVIDIA GeForce RTX 2080 Ti
+        vram_total_mib: 11264
+        state: busy
+        jobs:
+          - {kind: docker_labeled, user: carol, cores: 1.0, rss_mib: 6000, vram_mib: 9000}
+      - name: NVIDIA GeForce RTX 2080 Ti
+        vram_total_mib: 11264
+        state: busy
+        jobs:
+          - {kind: sudo, user: alice, cores: 1.0, rss_mib: 3000, vram_mib: 3000}
+          - {kind: uid, user: bob, cores: 1.0, rss_mib: 3000, vram_mib: 4000}
+  - id: srv-42
+    os_release: Ubuntu 24.04.1 LTS
+    kernel: 6.8.0-45-generic
+    cpu_model: AMD Ryzen 9 7950X 16-Core Processor
+    logical_cores: 32
+    mem_total_gib: 96
+    driver_version: "570.86.15"
+    cuda_driver_version: 12080
+    docker_default_owner: dave
+    uid_offset: 3
+    users: [alice, bob, carol, dave, erin, frank]
+    gpus:
+      - name: NVIDIA GeForce RTX 3080 Ti
+        vram_total_mib: 12288
+        state: idle
+        jobs:
+          - {kind: docker_unlabeled, user: dave, cores: 0.05, rss_mib: 4000, vram_mib: 7000}
+  - id: srv-43
+    os_release: Ubuntu 24.04.2 LTS
+    kernel: 6.11.0-19-generic
+    cpu_model: Intel(R) Core(TM) Ultra 9 285K
+    logical_cores: 24
+    mem_total_gib: 64
+    driver_version: "575.57.08"
+    cuda_driver_version: 12090
+    fan_not_supported: true
+    uid_offset: 11
+    users: [alice, bob, carol, dave, erin, frank]
+    gpus:
+      - name: NVIDIA GeForce RTX 5070 Ti
+        vram_total_mib: 16303
+        state: busy
+        jobs:
+          - {kind: rootless_subuid, user: erin, cores: 1.0, rss_mib: 5000, vram_mib: 12000}
+    jobs:
+      - {kind: rootless_root, user: erin, exe: jupyter-lab, cores: 0.3, rss_mib: 700}
+      - {kind: unknown_uid, uid: 4242, exe: stress-ng, cores: 1.5, rss_mib: 128}
+  - id: srv-44
+    os_release: Ubuntu 24.04.1 LTS
+    kernel: 6.8.0-45-generic
+    cpu_model: AMD EPYC 7313 16-Core Processor
+    logical_cores: 32
+    mem_total_gib: 128
+    driver_version: "570.86.15"
+    cuda_driver_version: 12080
+    uid_offset: 20
+    users: [alice, bob, carol, dave, erin, frank]
+    gpus:
+      - name: NVIDIA GeForce RTX 3090
+        vram_total_mib: 24576
+        state: free

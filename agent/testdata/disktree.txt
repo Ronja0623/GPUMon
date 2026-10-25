@@ -1,0 +1,17 @@
+# Fixture directory tree for the disk scan test (fake stat layer).
+# Columns: path type(d=dir f=file l=symlink) uid blocks(512 B) apparent_size dev inode nlink
+/home                    d 0      8      4096        1 2  5
+/home/alice              d 1001   8      4096        1 10 3
+/home/alice/data.bin     f 1001   2048   1048576     1 11 1
+/home/alice/hard1        f 1001   4096   2097152     1 12 2
+/home/alice/sub          d 1001   8      4096        1 13 2
+/home/alice/sub/hard2    f 1001   4096   2097152     1 12 2
+/home/alice/sparse.img   f 1001   16     10737418240 1 14 1
+/home/alice/link         l 1001   0      40          1 15 1
+/home/alice/link-dir     l 1001   0      12          1 16 1
+/home/bob                d 1002   8      4096        1 20 2
+/home/bob/x              f 1002   1024   524288      1 21 1
+/home/bob/container-file f 165540 512    262144      1 22 1
+/home/orphan.tar         f 4242   100    51200       1 30 1
+/home/mnt                d 0      8      4096        2 40 2
+/home/mnt/big            f 1001   999999 511999488   2 41 1

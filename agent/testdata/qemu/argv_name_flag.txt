@@ -1,0 +1,9 @@
+/usr/bin/qemu-system-x86_64
+-name
+guest=alice-gpu-test,debug-threads=on
+-machine
+q35,accel=kvm
+-drive
+file=/var/lib/multipassd/disks/disk0.img,if=virtio
+-m
+4096

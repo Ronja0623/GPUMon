@@ -1,0 +1,17 @@
+/snap/multipass/19230/usr/bin/qemu-system-x86_64
+-bios
+OVMF.fd
+--enable-kvm
+-cpu
+host
+-nic
+tap,ifname=tap-4ee30b3dbd9,script=no,downscript=no,model=virtio-net-pci,mac=52:54:00:f5:49:b8
+-drive
+file=/var/snap/multipass/common/data/multipassd/vault/instances/frank-dev/ubuntu-24.04-server-cloudimg-amd64.img,if=none,format=qcow2,discard=unmap,id=hda
+-smp
+4
+-m
+8192M
+-nographic
+-cdrom
+/var/snap/multipass/common/data/multipassd/vault/instances/frank-dev/cloud-init-config.iso

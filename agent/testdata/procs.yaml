@@ -1,0 +1,37 @@
+# Process fixtures for the attribution and collector tests. Each entry
+# becomes /proc/<pid>/{stat,status,loginuid,cgroup,cmdline,exe} in an
+# in-memory filesystem. loginuid: "unset" writes 4294967295; omit it to make
+# the file unreadable.
+passwd: etc/passwd_srv_a
+subuid: etc/subuid
+login_defs: etc/login.defs
+procs:
+  - {pid: 1, comm: systemd, exe: /usr/lib/systemd/systemd, uid: 0, loginuid: unset, cgroup: "0::/init.scope"}
+  # Kernel threads: PID 2, PF_KTHREAD flag, and PPID 2 without the flag.
+  - {pid: 2, comm: kthreadd, kthread: true}
+  - {pid: 3, ppid: 2, comm: "kworker/0:0-events", kthread: true}
+  - {pid: 50, ppid: 2, comm: rcu_gp}
+  - {pid: 100, ppid: 1, comm: dockerd, exe: /usr/bin/dockerd, uid: 0, loginuid: unset, cgroup: "0::/system.slice/docker.service"}
+  # Rootful Docker containers (cgroup v1 labeled, cgroup v2 systemd driver unlabeled).
+  - {pid: 200, ppid: 100, comm: python3, exe: /opt/conda/bin/python3.11, uid: 0, loginuid: unset, cgroup_file: cgroup/v1_docker.txt}
+  - {pid: 201, ppid: 100, comm: python3, exe: /usr/bin/python3, uid: 0, loginuid: unset, cgroup_file: cgroup/v2_docker_systemd.txt}
+  # Rootless Docker: container root maps to the user's own UID; container user maps to a subuid.
+  - {pid: 300, ppid: 1, comm: jupyter-lab, exe: /usr/local/bin/jupyter-lab, uid: 1003, loginuid: unset, cgroup_file: cgroup/v2_rootless.txt}
+  - {pid: 301, ppid: 300, comm: python3, exe: /usr/bin/python3, uid: 232071, loginuid: unset, cgroup_file: cgroup/v2_rootless.txt}
+  # sudo, direct root login, daemon, system account.
+  - {pid: 400, ppid: 1, comm: python3, exe: /usr/bin/python3.12, uid: 0, loginuid: "1001", cgroup_file: cgroup/v2_session.txt}
+  - {pid: 401, ppid: 1, comm: bash, exe: /usr/bin/bash, uid: 0, loginuid: "0", cgroup: "0::/user.slice/user-0.slice/session-7.scope"}
+  - {pid: 402, ppid: 1, comm: cron, exe: /usr/sbin/cron, uid: 0, loginuid: unset, cgroup: "0::/system.slice/cron.service"}
+  - {pid: 403, ppid: 1, comm: postgres, exe: /usr/lib/postgresql/16/bin/postgres, uid: 115, loginuid: unset, cgroup: "0::/system.slice/postgresql.service"}
+  # multipass: daemon, a VM with a valid user prefix, a VM with an invalid prefix.
+  - {pid: 500, ppid: 1, comm: multipassd, exe: /snap/multipass/19230/bin/multipassd, uid: 0, loginuid: unset, cgroup: "0::/system.slice/snap.multipass.multipassd.service"}
+  - {pid: 501, ppid: 500, comm: qemu-system-x86, exe: /snap/multipass/19230/usr/bin/qemu-system-x86_64, uid: 0, loginuid: unset, argv_file: qemu/argv_named.txt, cgroup: "0::/system.slice/snap.multipass.multipassd.service"}
+  - {pid: 502, ppid: 500, comm: qemu-system-x86, exe: /snap/multipass/19230/usr/bin/qemu-system-x86_64, uid: 0, loginuid: unset, argv_file: qemu/argv_invalid_prefix.txt, cgroup: "0::/system.slice/snap.multipass.multipassd.service"}
+  # QEMU detected through the data directory only, name from -name guest=...
+  - {pid: 503, ppid: 1, comm: qemu-system-x86, exe: /usr/bin/qemu-system-x86_64, uid: 0, loginuid: unset, argv_file: qemu/argv_name_flag.txt}
+  # QEMU that is not multipass (libvirt).
+  - {pid: 504, ppid: 1, comm: qemu-system-x86, exe: /usr/bin/qemu-system-x86_64, uid: 0, loginuid: unset, argv_file: qemu/argv_libvirt.txt}
+  # Unknown UID, regular users, and a process with a secret in its argv.
+  - {pid: 600, ppid: 1, comm: stress-ng, exe: /usr/bin/stress-ng, uid: 4242, loginuid: "4242"}
+  - {pid: 700, ppid: 1, comm: python3, exe: /usr/bin/python3, uid: 1002, loginuid: "1002", argv: [python3, train.py, "--api-key=SECRET123"]}
+  - {pid: 701, ppid: 1, comm: python3, exe: /usr/bin/python3, uid: 1001, loginuid: "1001", cgroup_file: cgroup/v2_session.txt}

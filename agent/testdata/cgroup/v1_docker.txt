@@ -1,0 +1,5 @@
+12:pids:/docker/4f2a9c3e5b7d1f0a8c6e4b2d9f7a5c3e1b0d8f6a4c2e0b9d7f5a3c1e8b6d4f2a
+11:memory:/docker/4f2a9c3e5b7d1f0a8c6e4b2d9f7a5c3e1b0d8f6a4c2e0b9d7f5a3c1e8b6d4f2a
+10:cpu,cpuacct:/docker/4f2a9c3e5b7d1f0a8c6e4b2d9f7a5c3e1b0d8f6a4c2e0b9d7f5a3c1e8b6d4f2a
+1:name=systemd:/docker/4f2a9c3e5b7d1f0a8c6e4b2d9f7a5c3e1b0d8f6a4c2e0b9d7f5a3c1e8b6d4f2a
+0::/system.slice/containerd.service

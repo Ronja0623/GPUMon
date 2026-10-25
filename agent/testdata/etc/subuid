@@ -1,0 +1,7 @@
+# name form and uid form, plus malformed lines that must be skipped
+alice:100000:65536
+1002:165536:65536
+erin:231072:65536
+this-line-is-malformed
+frank:notanumber:65536
+1004:296608:65536

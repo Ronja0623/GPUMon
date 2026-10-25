@@ -1,0 +1,13 @@
+{
+  "Id": "4f2a9c3e5b7d1f0a8c6e4b2d9f7a5c3e1b0d8f6a4c2e0b9d7f5a3c1e8b6d4f2a",
+  "Created": "2026-10-20T08:12:44.123456789Z",
+  "Name": "/carol-train",
+  "State": {"Status": "running", "Running": true, "Pid": 200},
+  "Config": {
+    "Hostname": "4f2a9c3e5b7d",
+    "Env": ["PATH=/usr/local/sbin:/usr/local/bin", "WANDB_API_KEY=SECRET123"],
+    "Cmd": ["python", "train.py", "--api-key=SECRET123"],
+    "Image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
+    "Labels": {"owner": "carol", "org.opencontainers.image.version": "22.04"}
+  }
+}

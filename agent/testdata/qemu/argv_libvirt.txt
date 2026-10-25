@@ -1,0 +1,7 @@
+/usr/bin/qemu-system-x86_64
+-name
+guest=win11,debug-threads=on
+-machine
+q35,accel=kvm
+-drive
+file=/var/lib/libvirt/images/win11.qcow2,if=virtio

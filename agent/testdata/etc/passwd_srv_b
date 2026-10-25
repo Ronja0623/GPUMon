@@ -1,0 +1,4 @@
+root:x:0:0:root:/root:/bin/bash
+bob:x:1001:1001:Bob:/home/bob:/bin/bash
+alice:x:1010:1010:Alice:/home/alice:/bin/bash
+erin:x:1011:1011:Erin:/home/erin:/bin/bash
