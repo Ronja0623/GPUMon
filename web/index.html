@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPUMon</title>
+<link rel="stylesheet" href="static/vendor/uPlot-1.6.31.min.css">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>GPUMon</h1>
+    <span class="sub">Lab GPU servers: where is capacity free, who uses what</span>
+  </div>
+  <div class="meta">
+    <span id="updated">Loading...</span>
+    <span id="tz" class="tz"></span>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="summary-h">
+    <h2 id="summary-h">Where can I run?</h2>
+    <p class="hint">Every GPU on every server, free GPUs first, then by free VRAM.</p>
+    <div class="table-wrap">
+      <table id="summary" class="summary">
+        <thead>
+          <tr><th>State</th><th>Server</th><th>GPU</th><th>Free / total VRAM</th><th>Util.</th><th>Current owners</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="servers-h">
+    <h2 id="servers-h">Servers</h2>
+    <div id="servers" class="cards"></div>
+  </section>
+
+  <section aria-labelledby="history-h">
+    <h2 id="history-h">History</h2>
+    <p class="hint" id="history-hint">Last 72 hours. Shaded areas are data gaps; hover them for details.
+      Per-user GPU utilization is only shown when the driver reports it; otherwise the device total is shown.</p>
+    <div id="history"></div>
+  </section>
+</main>
+
+<footer>
+  <p>GPUMon is an internal usage view for lab members. Ownership is inferred from the process owner, sudo login,
+    rootless Docker subuid ranges, Docker labels, and multipass VM names; the method is shown next to each owner.
+    Older audit data is available to administrators through the export command.</p>
+</footer>
+
+<script src="static/vendor/uPlot-1.6.31.iife.min.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>
