@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "type": "inventory",
+  "server_id": "srv-41",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "inventory": {
+    "hostname": "srv-41",
+    "os_release": "Ubuntu 22.04.4 LTS",
+    "kernel": "5.15.0-122-generic",
+    "cpu_model": "Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz",
+    "logical_cores": 40,
+    "mem_total_bytes": 137438953472,
+    "driver_version": "550.120",
+    "cuda_driver_version": "12.4",
+    "gpus": [
+      {
+        "index": 0,
+        "uuid": "GPU-f0145046-6cdf-37c5-7414-2f41430e7b7b",
+        "name": "NVIDIA GeForce RTX 2080 Ti",
+        "vram_total_mib": 11264
+      },
+      {
+        "index": 1,
+        "uuid": "GPU-9bde52a0-93cd-a59c-2034-76af3c56cee2",
+        "name": "NVIDIA GeForce RTX 2080 Ti",
+        "vram_total_mib": 11264
+      }
+    ],
+    "filesystems": [
+      {
+        "mount": "/",
+        "size_bytes": 1099511627776
+      },
+      {
+        "mount": "/home",
+        "size_bytes": 8796093022208
+      }
+    ]
+  },
+  "errors": []
+}

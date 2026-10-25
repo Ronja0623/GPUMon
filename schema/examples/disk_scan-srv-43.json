@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "type": "disk_scan",
+  "server_id": "srv-43",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "scan": {
+    "started_at": "2026-10-25T06:00:30.000Z",
+    "completed_at": "2026-10-25T06:00:30.000Z",
+    "partial": false,
+    "paths": [
+      {
+        "path": "/home",
+        "mount": "/home",
+        "total_bytes": 3143379230720,
+        "partial": false,
+        "owners": [
+          {
+            "owner": "bob",
+            "bytes": 561030107136
+          },
+          {
+            "owner": "dave",
+            "bytes": 505195532288
+          },
+          {
+            "owner": "alice",
+            "bytes": 395673866240
+          },
+          {
+            "owner": "user02",
+            "bytes": 341986775040
+          },
+          {
+            "owner": "frank",
+            "bytes": 312995745792
+          },
+          {
+            "owner": "user01",
+            "bytes": 303332069376
+          },
+          {
+            "owner": "user03",
+            "bytes": 260382396416
+          },
+          {
+            "owner": "erin",
+            "bytes": 236760076288
+          },
+          {
+            "owner": "carol",
+            "bytes": 220653948928
+          },
+          {
+            "owner": "uid:4242",
+            "bytes": 5368709120
+          },
+          {
+            "owner": "root",
+            "bytes": 4096
+          }
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

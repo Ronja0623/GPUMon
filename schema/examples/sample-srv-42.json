@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "type": "sample",
+  "server_id": "srv-42",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "seq": 1,
+  "interval_seconds": 30,
+  "host": {
+    "cpu_percent": 12.9,
+    "logical_cores": 32,
+    "load_avg": [
+      4.11,
+      3.7,
+      3.29
+    ],
+    "mem_total_bytes": 103079215104,
+    "mem_used_bytes": 17388535808,
+    "mem_available_bytes": 85690679296,
+    "swap_total_bytes": 8589934592,
+    "swap_used_bytes": 1073741824
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-959d40e2-24ae-72b4-1456-1087cfac9e1b",
+      "name": "NVIDIA GeForce RTX 3080 Ti",
+      "vram_total_mib": 12288,
+      "vram_used_mib": 7077,
+      "utilization_pct": 0,
+      "temperature_c": 43,
+      "power_draw_w": 33.1,
+      "power_limit_w": 320,
+      "fan_pct": 30,
+      "processes": [
+        {
+          "pid": 1040,
+          "type": "compute",
+          "vram_mib": 6827,
+          "exe": "python3",
+          "owner": "dave",
+          "attribution": "docker_default_owner",
+          "container_id": "d301fcd02b4b",
+          "container_name": "gpu0-job0",
+          "container_image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "owner": "dave",
+      "attributions": [
+        "docker_default_owner"
+      ],
+      "cpu_cores": 0.057,
+      "rss_bytes": 4194304000,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 0.057,
+          "rss_bytes": 4194304000,
+          "container_name": "gpu0-job0"
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 0.057,
+          "rss_bytes": 4194304000,
+          "container_name": "gpu0-job0"
+        }
+      ]
+    },
+    {
+      "owner": "system",
+      "attributions": [
+        "system"
+      ],
+      "cpu_cores": 0.04,
+      "rss_bytes": 120586240,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "owner": "user01",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 4.015,
+      "rss_bytes": 9852420096,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1052,
+          "exe": "matlab",
+          "cpu_cores": 2.323,
+          "rss_bytes": 3539992576
+        },
+        {
+          "pid": 1048,
+          "exe": "bash",
+          "cpu_cores": 1.351,
+          "rss_bytes": 4749000704
+        },
+        {
+          "pid": 1047,
+          "exe": "code-server",
+          "cpu_cores": 0.341,
+          "rss_bytes": 1559232512
+        },
+        {
+          "pid": 1042,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1048,
+          "exe": "bash",
+          "cpu_cores": 1.351,
+          "rss_bytes": 4749000704
+        },
+        {
+          "pid": 1052,
+          "exe": "matlab",
+          "cpu_cores": 2.323,
+          "rss_bytes": 3539992576
+        },
+        {
+          "pid": 1047,
+          "exe": "code-server",
+          "cpu_cores": 0.341,
+          "rss_bytes": 1559232512
+        },
+        {
+          "pid": 1042,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    }
+  ],
+  "filesystems": [
+    {
+      "mount": "/",
+      "size_bytes": 1099511627776,
+      "used_bytes": 429496729600,
+      "free_bytes": 670014898176
+    },
+    {
+      "mount": "/home",
+      "size_bytes": 8796093022208,
+      "used_bytes": 3257195864064,
+      "free_bytes": 5538897158144
+    }
+  ],
+  "errors": []
+}

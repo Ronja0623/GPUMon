@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "type": "sample",
+  "server_id": "srv-43",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "seq": 1,
+  "interval_seconds": 30,
+  "host": {
+    "cpu_percent": 70.2,
+    "logical_cores": 24,
+    "load_avg": [
+      16.86,
+      15.17,
+      13.48
+    ],
+    "mem_total_bytes": 68719476736,
+    "mem_used_bytes": 33920385024,
+    "mem_available_bytes": 34799091712,
+    "swap_total_bytes": 8589934592,
+    "swap_used_bytes": 1073741824
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-2b69a6c4-80c7-bffa-5d66-9e20949c3764",
+      "name": "NVIDIA GeForce RTX 5070 Ti",
+      "vram_total_mib": 16303,
+      "vram_used_mib": 12801,
+      "utilization_pct": 94,
+      "temperature_c": 79,
+      "power_draw_w": 207.7,
+      "power_limit_w": 320,
+      "fan_pct": null,
+      "processes": [
+        {
+          "pid": 1040,
+          "type": "compute",
+          "vram_mib": 12551,
+          "exe": "python3",
+          "owner": "erin",
+          "attribution": "subuid",
+          "container_id": "928dae303fd6"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "owner": "erin",
+      "attributions": [
+        "subuid",
+        "uid"
+      ],
+      "cpu_cores": 1.408,
+      "rss_bytes": 5976883200,
+      "process_count": 2,
+      "top_cpu": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 1.147,
+          "rss_bytes": 5242880000
+        },
+        {
+          "pid": 1042,
+          "exe": "jupyter-lab",
+          "cpu_cores": 0.261,
+          "rss_bytes": 734003200
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 1.147,
+          "rss_bytes": 5242880000
+        },
+        {
+          "pid": 1042,
+          "exe": "jupyter-lab",
+          "cpu_cores": 0.261,
+          "rss_bytes": 734003200
+        }
+      ]
+    },
+    {
+      "owner": "system",
+      "attributions": [
+        "system"
+      ],
+      "cpu_cores": 0.04,
+      "rss_bytes": 120586240,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "owner": "uid:4242",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 1.468,
+      "rss_bytes": 134217728,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1047,
+          "exe": "stress-ng",
+          "cpu_cores": 1.468,
+          "rss_bytes": 134217728
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1047,
+          "exe": "stress-ng",
+          "cpu_cores": 1.468,
+          "rss_bytes": 134217728
+        }
+      ]
+    },
+    {
+      "owner": "user01",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 5.882,
+      "rss_bytes": 15527313408,
+      "process_count": 3,
+      "top_cpu": [
+        {
+          "pid": 1061,
+          "exe": "code-server",
+          "cpu_cores": 3.285,
+          "rss_bytes": 7520387072
+        },
+        {
+          "pid": 1054,
+          "exe": "jupyter-lab",
+          "cpu_cores": 2.597,
+          "rss_bytes": 8002732032
+        },
+        {
+          "pid": 1053,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1054,
+          "exe": "jupyter-lab",
+          "cpu_cores": 2.597,
+          "rss_bytes": 8002732032
+        },
+        {
+          "pid": 1061,
+          "exe": "code-server",
+          "cpu_cores": 3.285,
+          "rss_bytes": 7520387072
+        },
+        {
+          "pid": 1053,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    },
+    {
+      "owner": "user02",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 8.056,
+      "rss_bytes": 8940158976,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1067,
+          "exe": "code-server",
+          "cpu_cores": 2.995,
+          "rss_bytes": 3770679296
+        },
+        {
+          "pid": 1068,
+          "exe": "node",
+          "cpu_cores": 2.685,
+          "rss_bytes": 4390387712
+        },
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.376,
+          "rss_bytes": 774897664
+        },
+        {
+          "pid": 1066,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1068,
+          "exe": "node",
+          "cpu_cores": 2.685,
+          "rss_bytes": 4390387712
+        },
+        {
+          "pid": 1067,
+          "exe": "code-server",
+          "cpu_cores": 2.995,
+          "rss_bytes": 3770679296
+        },
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.376,
+          "rss_bytes": 774897664
+        },
+        {
+          "pid": 1066,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    }
+  ],
+  "filesystems": [
+    {
+      "mount": "/",
+      "size_bytes": 1099511627776,
+      "used_bytes": 429496729600,
+      "free_bytes": 670014898176
+    },
+    {
+      "mount": "/home",
+      "size_bytes": 8796093022208,
+      "used_bytes": 3304440504320,
+      "free_bytes": 5491652517888
+    }
+  ],
+  "errors": []
+}

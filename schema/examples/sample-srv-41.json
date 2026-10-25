@@ -1,0 +1,346 @@
+{
+  "schema_version": 1,
+  "type": "sample",
+  "server_id": "srv-41",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "seq": 1,
+  "interval_seconds": 30,
+  "host": {
+    "cpu_percent": 41.7,
+    "logical_cores": 40,
+    "load_avg": [
+      16.67,
+      15,
+      13.33
+    ],
+    "mem_total_bytes": 137438953472,
+    "mem_used_bytes": 40392196096,
+    "mem_available_bytes": 97046757376,
+    "swap_total_bytes": 8589934592,
+    "swap_used_bytes": 1073741824
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-f0145046-6cdf-37c5-7414-2f41430e7b7b",
+      "name": "NVIDIA GeForce RTX 2080 Ti",
+      "vram_total_mib": 11264,
+      "vram_used_mib": 9362,
+      "utilization_pct": 95,
+      "temperature_c": 75,
+      "power_draw_w": 276,
+      "power_limit_w": 320,
+      "fan_pct": 77,
+      "processes": [
+        {
+          "pid": 1040,
+          "type": "compute",
+          "vram_mib": 9112,
+          "exe": "python3",
+          "owner": "carol",
+          "attribution": "docker_label",
+          "container_id": "d8bf7465775c",
+          "container_name": "gpu0-job0",
+          "container_image": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-9bde52a0-93cd-a59c-2034-76af3c56cee2",
+      "name": "NVIDIA GeForce RTX 2080 Ti",
+      "vram_total_mib": 11264,
+      "vram_used_mib": 7547,
+      "utilization_pct": 83,
+      "temperature_c": 74,
+      "power_draw_w": 198.5,
+      "power_limit_w": 320,
+      "fan_pct": 71,
+      "processes": [
+        {
+          "pid": 1042,
+          "type": "compute",
+          "vram_mib": 3115,
+          "exe": "python3",
+          "owner": "alice",
+          "attribution": "loginuid"
+        },
+        {
+          "pid": 1047,
+          "type": "compute",
+          "vram_mib": 4182,
+          "exe": "python3",
+          "owner": "bob",
+          "attribution": "uid"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "owner": "alice",
+      "attributions": [
+        "loginuid"
+      ],
+      "cpu_cores": 0.994,
+      "rss_bytes": 3145728000,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1042,
+          "exe": "python3",
+          "cpu_cores": 0.994,
+          "rss_bytes": 3145728000
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1042,
+          "exe": "python3",
+          "cpu_cores": 0.994,
+          "rss_bytes": 3145728000
+        }
+      ]
+    },
+    {
+      "owner": "bob",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 0.893,
+      "rss_bytes": 3145728000,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1047,
+          "exe": "python3",
+          "cpu_cores": 0.893,
+          "rss_bytes": 3145728000
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1047,
+          "exe": "python3",
+          "cpu_cores": 0.893,
+          "rss_bytes": 3145728000
+        }
+      ]
+    },
+    {
+      "owner": "carol",
+      "attributions": [
+        "docker_label"
+      ],
+      "cpu_cores": 1.015,
+      "rss_bytes": 6291456000,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 1.015,
+          "rss_bytes": 6291456000,
+          "container_name": "gpu0-job0"
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1040,
+          "exe": "python3",
+          "cpu_cores": 1.015,
+          "rss_bytes": 6291456000,
+          "container_name": "gpu0-job0"
+        }
+      ]
+    },
+    {
+      "owner": "system",
+      "attributions": [
+        "system"
+      ],
+      "cpu_cores": 0.04,
+      "rss_bytes": 120586240,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        },
+        {
+          "pid": 1034,
+          "exe": "dbus-daemon",
+          "cpu_cores": 0,
+          "rss_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "owner": "user01",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 6.004,
+      "rss_bytes": 15527313408,
+      "process_count": 3,
+      "top_cpu": [
+        {
+          "pid": 1061,
+          "exe": "code-server",
+          "cpu_cores": 3.283,
+          "rss_bytes": 7520387072
+        },
+        {
+          "pid": 1054,
+          "exe": "jupyter-lab",
+          "cpu_cores": 2.721,
+          "rss_bytes": 8002732032
+        },
+        {
+          "pid": 1053,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1054,
+          "exe": "jupyter-lab",
+          "cpu_cores": 2.721,
+          "rss_bytes": 8002732032
+        },
+        {
+          "pid": 1061,
+          "exe": "code-server",
+          "cpu_cores": 3.283,
+          "rss_bytes": 7520387072
+        },
+        {
+          "pid": 1053,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    },
+    {
+      "owner": "user02",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 7.721,
+      "rss_bytes": 8940158976,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1067,
+          "exe": "code-server",
+          "cpu_cores": 2.847,
+          "rss_bytes": 3770679296
+        },
+        {
+          "pid": 1068,
+          "exe": "node",
+          "cpu_cores": 2.489,
+          "rss_bytes": 4390387712
+        },
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.385,
+          "rss_bytes": 774897664
+        },
+        {
+          "pid": 1066,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1068,
+          "exe": "node",
+          "cpu_cores": 2.489,
+          "rss_bytes": 4390387712
+        },
+        {
+          "pid": 1067,
+          "exe": "code-server",
+          "cpu_cores": 2.847,
+          "rss_bytes": 3770679296
+        },
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.385,
+          "rss_bytes": 774897664
+        },
+        {
+          "pid": 1066,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    }
+  ],
+  "filesystems": [
+    {
+      "mount": "/",
+      "size_bytes": 1099511627776,
+      "used_bytes": 429496729600,
+      "free_bytes": 670014898176
+    },
+    {
+      "mount": "/home",
+      "size_bytes": 8796093022208,
+      "used_bytes": 3304440504320,
+      "free_bytes": 5491652517888
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "type": "sample",
+  "server_id": "srv-40",
+  "run_id": "example0000000001",
+  "timestamp": "2026-10-25T06:00:30.000Z",
+  "agent_version": "0.1.0-sim",
+  "seq": 1,
+  "interval_seconds": 30,
+  "host": {
+    "cpu_percent": 36.5,
+    "logical_cores": 32,
+    "load_avg": [
+      11.67,
+      10.5,
+      9.34
+    ],
+    "mem_total_bytes": 68719476736,
+    "mem_used_bytes": 30136074240,
+    "mem_available_bytes": 38583402496,
+    "swap_total_bytes": 8589934592,
+    "swap_used_bytes": 1073741824
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-295eebf5-588b-d475-0c8a-b29396208df3",
+      "name": "NVIDIA GeForce RTX 3080",
+      "vram_total_mib": 10240,
+      "vram_used_mib": 254,
+      "utilization_pct": 0,
+      "temperature_c": 35,
+      "power_draw_w": 18.1,
+      "power_limit_w": 320,
+      "fan_pct": 30,
+      "processes": [
+        {
+          "pid": 1040,
+          "type": "graphics",
+          "vram_mib": 4,
+          "exe": "Xorg",
+          "owner": "system",
+          "attribution": "system",
+          "account": "root"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "owner": "bob",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 0.922,
+      "rss_bytes": 943718400,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1057,
+          "exe": "python3",
+          "cpu_cores": 0.922,
+          "rss_bytes": 943718400
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1057,
+          "exe": "python3",
+          "cpu_cores": 0.922,
+          "rss_bytes": 943718400
+        }
+      ]
+    },
+    {
+      "owner": "frank",
+      "attributions": [
+        "multipass_name"
+      ],
+      "cpu_cores": 1.851,
+      "rss_bytes": 8589934592,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1047,
+          "exe": "qemu-system-x86_64",
+          "cpu_cores": 1.851,
+          "rss_bytes": 8589934592,
+          "vm_name": "frank-dev"
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1047,
+          "exe": "qemu-system-x86_64",
+          "cpu_cores": 1.851,
+          "rss_bytes": 8589934592,
+          "vm_name": "frank-dev"
+        }
+      ]
+    },
+    {
+      "owner": "root-shared",
+      "attributions": [
+        "root_shared"
+      ],
+      "cpu_cores": 0.386,
+      "rss_bytes": 67108864,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1055,
+          "exe": "rsync",
+          "cpu_cores": 0.386,
+          "rss_bytes": 67108864
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1055,
+          "exe": "rsync",
+          "cpu_cores": 0.386,
+          "rss_bytes": 67108864
+        }
+      ]
+    },
+    {
+      "owner": "system",
+      "attributions": [
+        "system"
+      ],
+      "cpu_cores": 0.07,
+      "rss_bytes": 267386880,
+      "process_count": 6,
+      "top_cpu": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1042,
+          "exe": "multipassd",
+          "cpu_cores": 0.02,
+          "rss_bytes": 62914560
+        },
+        {
+          "pid": 1040,
+          "exe": "Xorg",
+          "cpu_cores": 0.01,
+          "rss_bytes": 83886080
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1037,
+          "exe": "dockerd",
+          "cpu_cores": 0.03,
+          "rss_bytes": 94371840
+        },
+        {
+          "pid": 1040,
+          "exe": "Xorg",
+          "cpu_cores": 0.01,
+          "rss_bytes": 83886080
+        },
+        {
+          "pid": 1042,
+          "exe": "multipassd",
+          "cpu_cores": 0.02,
+          "rss_bytes": 62914560
+        },
+        {
+          "pid": 1,
+          "exe": "systemd",
+          "cpu_cores": 0.01,
+          "rss_bytes": 12582912
+        },
+        {
+          "pid": 1033,
+          "exe": "sshd",
+          "cpu_cores": 0,
+          "rss_bytes": 8388608
+        }
+      ]
+    },
+    {
+      "owner": "unattributed",
+      "attributions": [
+        "unattributed"
+      ],
+      "cpu_cores": 0.564,
+      "rss_bytes": 2147483648,
+      "process_count": 1,
+      "top_cpu": [
+        {
+          "pid": 1052,
+          "exe": "qemu-system-x86_64",
+          "cpu_cores": 0.564,
+          "rss_bytes": 2147483648,
+          "vm_name": "ci-runner"
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1052,
+          "exe": "qemu-system-x86_64",
+          "cpu_cores": 0.564,
+          "rss_bytes": 2147483648,
+          "vm_name": "ci-runner"
+        }
+      ]
+    },
+    {
+      "owner": "user01",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 5.232,
+      "rss_bytes": 10133438464,
+      "process_count": 4,
+      "top_cpu": [
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.475,
+          "rss_bytes": 2136997888
+        },
+        {
+          "pid": 1078,
+          "exe": "bash",
+          "cpu_cores": 1.569,
+          "rss_bytes": 1746927616
+        },
+        {
+          "pid": 1073,
+          "exe": "jupyter-lab",
+          "cpu_cores": 1.188,
+          "rss_bytes": 6245318656
+        },
+        {
+          "pid": 1062,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1073,
+          "exe": "jupyter-lab",
+          "cpu_cores": 1.188,
+          "rss_bytes": 6245318656
+        },
+        {
+          "pid": 1069,
+          "exe": "matlab",
+          "cpu_cores": 2.475,
+          "rss_bytes": 2136997888
+        },
+        {
+          "pid": 1078,
+          "exe": "bash",
+          "cpu_cores": 1.569,
+          "rss_bytes": 1746927616
+        },
+        {
+          "pid": 1062,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    },
+    {
+      "owner": "user03",
+      "attributions": [
+        "uid"
+      ],
+      "cpu_cores": 2.647,
+      "rss_bytes": 4765777920,
+      "process_count": 3,
+      "top_cpu": [
+        {
+          "pid": 1091,
+          "exe": "R",
+          "cpu_cores": 2.511,
+          "rss_bytes": 924844032
+        },
+        {
+          "pid": 1087,
+          "exe": "python3",
+          "cpu_cores": 0.136,
+          "rss_bytes": 3836739584
+        },
+        {
+          "pid": 1083,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ],
+      "top_rss": [
+        {
+          "pid": 1087,
+          "exe": "python3",
+          "cpu_cores": 0.136,
+          "rss_bytes": 3836739584
+        },
+        {
+          "pid": 1091,
+          "exe": "R",
+          "cpu_cores": 2.511,
+          "rss_bytes": 924844032
+        },
+        {
+          "pid": 1083,
+          "exe": "bash",
+          "cpu_cores": 0,
+          "rss_bytes": 4194304
+        }
+      ]
+    }
+  ],
+  "filesystems": [
+    {
+      "mount": "/",
+      "size_bytes": 1099511627776,
+      "used_bytes": 429496729600,
+      "free_bytes": 670014898176
+    },
+    {
+      "mount": "/home",
+      "size_bytes": 8796093022208,
+      "used_bytes": 3290481860608,
+      "free_bytes": 5505611161600
+    }
+  ],
+  "errors": []
+}
