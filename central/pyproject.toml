@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpumon-central"
+version = "0.1.0"
+description = "GPUMon central: ingest API, SQLite storage, dashboard, and export CLI"
+requires-python = ">=3.10"
+dependencies = [
+    "starlette==1.7.0",
+    "uvicorn==0.54.0",
+    "fastjsonschema==2.22.2",
+    "PyYAML==6.0.3",
+]
+
+[project.scripts]
+gpumon = "gpumon_central.cli:main"
+
+[tool.setuptools]
+packages = ["gpumon_central"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["req(id): the specification requirement verified by this test"]
+filterwarnings = ["ignore:Using `httpx` with `starlette.testclient` is deprecated"]
