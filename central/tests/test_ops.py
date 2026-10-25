@@ -295,8 +295,10 @@ def test_install_central_auto_export_choice():
         return r.stdout
 
     out = dry("--auto-export", "yes")
-    assert "installed /etc/systemd/system/gpumon-export.service" in out
-    assert "installed /etc/systemd/system/gpumon-export.timer" in out
+    for unit_file in ("gpumon-export.service", "gpumon-export.timer"):
+        # The host running the tests may already have GPUMon installed.
+        path = f"/etc/systemd/system/{unit_file}"
+        assert f"installed {path}" in out or f"unit is up to date: {path}" in out, unit_file
     assert "DRY-RUN: systemctl enable --now gpumon-export.timer" in out
     out = dry()
     if not os.path.exists("/etc/systemd/system/gpumon-export.timer"):
